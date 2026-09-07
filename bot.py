@@ -68,7 +68,7 @@ async def chat_with_ai(user_id, user_message, memory):
     except:
         return "নেটওয়ার্ক সমস্যা হচ্ছে, একটু পরে বলো"
         
-        async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("হ্যালো,কেমন আছো?")
 
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -83,7 +83,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
 def main():
     app = Application.builder().token(TELEGRAM_TOKEN).build()
     app.add_handler(CommandHandler("start", start))
-    app.add_handler(MessageHandler(filters.TEXT & \~filters.COMMAND, handle_message))
+    app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))
     print("Bot is running...")
     app.run_polling()
 
