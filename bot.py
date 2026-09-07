@@ -2,7 +2,7 @@ import os
 import json
 import requests
 from telegram import Update
-from telegram.ext import Application, MessageHandler, filters, ContextTypes
+from telegram.ext import Application, MessageHandler, CommandHandler, filters, ContextTypes
 
 TELEGRAM_TOKEN = "8994952192:AAEF_G493YEcYaiqZM2KSWmRCBkTMXhsiKg"
 OPENROUTER_API_KEY = "sk-or-v1-3785932a7c40b5bb200d4 5cce8f2604e7c8de3e8c1b4c93996e 02b3eef762b9c"
@@ -67,6 +67,9 @@ async def chat_with_ai(user_id, user_message, memory):
             return "আচ্ছা কালকে কথা বলবো, এখন তুমি ম্যাসেজ দিলেও রিপ্লাই দিতে পারবো না"
     except:
         return "নেটওয়ার্ক সমস্যা হচ্ছে, একটু পরে বলো"
+        
+        async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await update.message.reply_text("হ্যালো,কেমন আছো?")
 
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_id = update.effective_user.id
@@ -79,6 +82,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 def main():
     app = Application.builder().token(TELEGRAM_TOKEN).build()
+    app.add_handler(CommandHandler("start", start))
     app.add_handler(MessageHandler(filters.TEXT & \~filters.COMMAND, handle_message))
     print("Bot is running...")
     app.run_polling()
