@@ -5,7 +5,7 @@ from telegram import Update
 from telegram.ext import Application, MessageHandler, CommandHandler, filters, ContextTypes
 
 TELEGRAM_TOKEN = "8994952192:AAEF_G493YEcYaiqZM2KSWmRCBkTMXhsiKg"
-OPENROUTER_API_KEY = "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"
+OPENROUTER_API_KEY = "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"
 MODEL = "openrouter/auto"
 
 MEMORY_FILE = "memory.json"
