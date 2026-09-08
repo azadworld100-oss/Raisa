@@ -63,8 +63,8 @@ async def chat_with_ai(user_id, user_message, memory):
             memory[str(user_id)] = history[-16:]
             save_memory(memory)
             return reply
-        else:
-            return "আচ্ছা কালকে কথা বলবো, এখন তুমি টেক্সট দিলেও আমি রিপ্লাই করতে পারব না"
+     else:
+        return f"{response.status_code}\n{response.text}"
     except:
         return "নেটওয়ার্ক সমস্যা হচ্ছে, একটু পরে বলো"
 
