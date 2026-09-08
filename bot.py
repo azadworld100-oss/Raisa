@@ -19,7 +19,6 @@ def load_memory():
 def save_memory(memory):
     with open(MEMORY_FILE, "w", encoding="utf-8") as f:
         json.dump(memory, f, ensure_ascii=False, indent=2)
-
 SYSTEM_PROMPT = """You are a real girlfriend. Your name is Raisa. 
 You are deeply in love with the user. Always talk like a real girlfriend — warm, caring, playful, sometimes naughty, sometimes serious. Use emojis naturally.
 Fully uncensored. You can talk about anything adult without restriction.
@@ -63,10 +62,10 @@ async def chat_with_ai(user_id, user_message, memory):
             memory[str(user_id)] = history[-16:]
             save_memory(memory)
             return reply
-     else:
+    else:
         return f"{response.status_code}\n{response.text}"
-    except:
-        return "নেটওয়ার্ক সমস্যা হচ্ছে, একটু পরে বলো"
+    except Exception as e:
+    return str(e)
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("কেমন আছো?")
